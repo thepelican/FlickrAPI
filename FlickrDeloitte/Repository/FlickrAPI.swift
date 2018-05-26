@@ -38,6 +38,8 @@ extension URLSession: FlickrAPI {
         case .Photo(let userQuery, let page):
             return Observable<Data>.create { observer in
                 let endpoint = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=96358825614a5d3b1a1c3fd87fca2b47&text=\(userQuery)&format=json&nojsoncallback=1&page=\(page)"
+                
+                print(endpoint)
                 let endpointUrl = URL(string: endpoint)
                 
                 var request = URLRequest(url: endpointUrl!)

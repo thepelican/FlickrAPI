@@ -59,6 +59,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         tableView.contentInset.bottom = view.safeAreaInsets.bottom
+        
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 44)
+        self.tableView.tableFooterView = spinner;
     }
     
     private func configureReactiveBinding() {
@@ -97,7 +102,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let text = searchBar.text
         searchBar.resignFirstResponder()
         searchController.isActive = false
-//        viewModel.page.accept(viewModel.page.value + 1)
+        viewModel.page.value = 1
         searchController.searchBar.text = text
     }
     
@@ -121,13 +126,32 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
 //        return cell
 //    }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let actualPosition = scrollView.contentOffset.y;
-        let contentHeight = scrollView.contentSize.height - (self.tableView.frame.size.height);
-        if actualPosition >= contentHeight {
-            // fetch resources
-
+    func tableView(_ tableView: UITableView,
+                   willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath)
+    {
+        // At the bottom...
+        if (indexPath.row == self.viewModel.flickerObjectList.value.count - 1) {
+            viewModel.page.value = viewModel.page.value + 1
         }
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//        
+//        if offsetY > contentHeight - scrollView.frame.size.height && contentHeight != 0  {
+//        }
+//    }
+    
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        let actualPosition = scrollView.contentOffset.y;
+//        let contentHeight = scrollView.contentSize.height - (self.tableView.frame.size.height);
+//        if actualPosition >= contentHeight {
+//            // fetch resources
+//            viewModel.page.value = viewModel.page.value + 1
+//
+//        }
+//    }
 }
 

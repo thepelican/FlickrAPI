@@ -6,15 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.573854"
+            timestampString = "549044106.349885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "getFlickrPhotosContainer(query:page:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,23 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.5742559"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "getFlickrPhotosContainer(query:page:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.574519"
+            timestampString = "549044106.350289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -57,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FlickrDeloitte/ViewModel/ViewModel.swift"
-            timestampString = "549042687.574779"
+            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
+            timestampString = "549044106.350574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "getImageURL(_:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "getFlickrPhotosContainer(query:page:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,24 +57,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FlickrDeloitte/Controllers/ViewController.swift"
-            timestampString = "549042687.575079"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "scrollViewDidEndDragging(_:willDecelerate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/ViewModel/ViewModel.swift"
-            timestampString = "549042687.575142"
+            timestampString = "549044106.350849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -102,46 +70,46 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/ViewModel/ViewModel.swift"
-            timestampString = "549042687.575381"
+            timestampString = "549044106.351151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "refreshResults(query:page:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "FlickrDeloitte.ViewModel.refreshResults(query: Swift.String, page: Swift.Int) -&gt; ()"
                   moduleName = "FlickrDeloitte"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marcoprayer/develop/iphone/FlickrAPI/FlickrDeloitte/ViewModel/ViewModel.swift"
-                  timestampString = "549042687.911762"
+                  timestampString = "549043190.367658"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
                   offsetFromSymbolStart = "44">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (FlickrDeloitte.APIResult&lt;FlickrDeloitte.FlickrContainer&gt;) -&gt; () in FlickrDeloitte.ViewModel.refreshResults(query: Swift.String, page: Swift.Int) -&gt; ()"
                   moduleName = "FlickrDeloitte"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marcoprayer/develop/iphone/FlickrAPI/FlickrDeloitte/ViewModel/ViewModel.swift"
-                  timestampString = "549042687.914065"
+                  timestampString = "549043190.370001"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
                   offsetFromSymbolStart = "41">
                </Location>
             </Locations>
@@ -150,27 +118,27 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.575665"
+            timestampString = "549044106.3514169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "getFlickrPhotosContainer(query:page:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "FlickrDeloitte.APIManager.getFlickrPhotosContainer(query: Swift.String, page: Swift.Int) -&gt; RxSwift.Observable&lt;FlickrDeloitte.APIResult&lt;FlickrDeloitte.FlickrContainer&gt;&gt;"
                   moduleName = "FlickrDeloitte"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marcoprayer/develop/iphone/FlickrAPI/FlickrDeloitte/Repository/FlickrAPI.swift"
-                  timestampString = "549042687.919596"
+                  timestampString = "549043190.375645"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "73"
@@ -178,14 +146,14 @@
                   offsetFromSymbolStart = "33">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Foundation.Data) -&gt; FlickrDeloitte.APIResult&lt;FlickrDeloitte.FlickrContainer&gt; in FlickrDeloitte.APIManager.getFlickrPhotosContainer(query: Swift.String, page: Swift.Int) -&gt; RxSwift.Observable&lt;FlickrDeloitte.APIResult&lt;FlickrDeloitte.FlickrContainer&gt;&gt;"
                   moduleName = "FlickrDeloitte"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marcoprayer/develop/iphone/FlickrAPI/FlickrDeloitte/Repository/FlickrAPI.swift"
-                  timestampString = "549042687.921717"
+                  timestampString = "549043190.377911"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -198,11 +166,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.575895"
+            timestampString = "549044106.351689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
@@ -214,43 +182,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.576128"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "GET(apiCall:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.576357"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "GET(apiCall:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.576583"
+            timestampString = "549044106.351959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -262,43 +198,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.576816"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "GET(apiCall:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.577047"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "GET(apiCall:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.577273"
+            timestampString = "549044106.352226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -310,27 +214,91 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
-            timestampString = "549042687.577498"
+            timestampString = "549044106.352487"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "GET(apiCall:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
+            timestampString = "549044106.3527631"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "GET(apiCall:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
+            timestampString = "549044106.353021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "GET(apiCall:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
+            timestampString = "549044106.353276"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
             endingLineNumber = "57"
             landmarkName = "GET(apiCall:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
+            timestampString = "549044106.353532"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "GET(apiCall:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (RxSwift.AnyObserver&lt;Foundation.Data&gt;) -&gt; RxSwift.Disposable in (extension in FlickrDeloitte):__ObjC.URLSession.GET(apiCall: FlickrDeloitte.APICall) -&gt; RxSwift.Observable&lt;Foundation.Data&gt;"
                   moduleName = "FlickrDeloitte"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marcoprayer/develop/iphone/FlickrAPI/FlickrDeloitte/Repository/FlickrAPI.swift"
-                  timestampString = "549042687.9575371"
+                  timestampString = "549043190.511173"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "57"
@@ -338,14 +306,14 @@
                   offsetFromSymbolStart = "1551">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #2 () -&gt; () in closure #1 (RxSwift.AnyObserver&lt;Foundation.Data&gt;) -&gt; RxSwift.Disposable in (extension in FlickrDeloitte):__ObjC.URLSession.GET(apiCall: FlickrDeloitte.APICall) -&gt; RxSwift.Observable&lt;Foundation.Data&gt;"
                   moduleName = "FlickrDeloitte"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marcoprayer/develop/iphone/FlickrAPI/FlickrDeloitte/Repository/FlickrAPI.swift"
-                  timestampString = "549042687.959689"
+                  timestampString = "549043190.513447"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "58"
@@ -353,6 +321,70 @@
                   offsetFromSymbolStart = "12">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/ViewModel/ViewModel.swift"
+            timestampString = "549044106.353783"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "refreshResults(query:page:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/Repository/FlickrAPI.swift"
+            timestampString = "549044106.354021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "getFlickrPhotosContainer(query:page:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/ViewModel/ViewModel.swift"
+            timestampString = "549044106.3542629"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "refreshResults(query:page:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlickrDeloitte/ViewModel/ViewModel.swift"
+            timestampString = "549044106.354495"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "init(APIManager:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

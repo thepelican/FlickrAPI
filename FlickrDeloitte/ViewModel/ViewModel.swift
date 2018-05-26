@@ -29,7 +29,9 @@ class ViewModel {
                 self.refreshResults(query: query.element!)
         }).disposed(by: disposeBag)
         
-        page.asObservable().subscribe({(page) in
+        page.asObservable()
+            .filter{ $0 != 1 || $0 != 0 }
+            .subscribe({(page) in
             self.refreshResults(query: self.query.value, page: page.element!)
             }
         ).disposed(by: disposeBag)
@@ -45,6 +47,7 @@ class ViewModel {
                             for single in photos {
                                 self.flickerObjectList.value.append(single)
                             }
+                            print(self.flickerObjectList.value.count)
                         } else {
                             self.flickerObjectList.value = photos
                         }
@@ -57,6 +60,7 @@ class ViewModel {
             }).disposed(by: disposeBag)
     }
     
+
     func getImageURL(_ model: FlickrObject) -> URL {
         let urlString = "http://farm\(model.farm).static.flickr.com/\(model.server)/\(model.id)_\(model.secret).jpg"
         

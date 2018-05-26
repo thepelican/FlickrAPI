@@ -26,15 +26,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.viewModel = ViewModel(query: searchController.searchBar.rx.text.orEmpty.asObservable())
         
         configureProperties()
         configureLayout()
+        
+        self.viewModel = ViewModel()
+        
         configureReactiveBinding()
         
-        //ask for page 1
-        self.viewModel.page.accept(1)
-
     }
     
     private func configureProperties() {
@@ -64,26 +63,23 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     private func configureReactiveBinding() {
         
-//            .map { ($0 ?? "").lowercased() }
-//            .flatMap { request -> Observable<[FlickrObject]> in
-//                return viewModel.getFlickrPhotosContainer(text: request)
-//            }
+        searchController.searchBar.rx.text.orEmpty.asObservable().bind(to: viewModel.query)
         
-            viewModel.flickerObjectList.drive(tableView.rx.items(cellIdentifier: cellIdentifier))
-            { index, model, cell in
-                cell.textLabel?.text = model.title
-                cell.imageView?.sd_setImage(with: self.viewModel.getImageURL(model), placeholderImage: UIImage(named: "Placeholder.jpg"))
-                cell.textLabel?.adjustsFontSizeToFitWidth = true
+        viewModel.flickerObjectList.asDriver().drive(tableView.rx.items(cellIdentifier: cellIdentifier))
+        { index, model, cell in
+            cell.textLabel?.text = model.title
+            cell.imageView?.sd_setImage(with: self.viewModel.getImageURL(model), placeholderImage: UIImage(named: "Placeholder.jpg"))
+            cell.textLabel?.adjustsFontSizeToFitWidth = true
             }
             .disposed(by: viewModel.disposeBag)
         
-//        tableView.rx.modelSelected(UniversityModel.self)
-//            .map { URL(string: $0.webPages?.first ?? "")! }
-//            .map { SFSafariViewController(url: $0) }
-//            .subscribe(onNext: { [weak self] safariViewController in
-//                self?.present(safariViewController, animated: true)
-//            })
-//            .disposed(by: disposeBag)
+        //        tableView.rx.modelSelected(UniversityModel.self)
+        //            .map { URL(string: $0.webPages?.first ?? "")! }
+        //            .map { SFSafariViewController(url: $0) }
+        //            .subscribe(onNext: { [weak self] safariViewController in
+        //                self?.present(safariViewController, animated: true)
+        //            })
+        //            .disposed(by: disposeBag)
         
         tableView.rx.contentOffset
             .subscribe { [weak self] _ in
@@ -94,25 +90,35 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             .disposed(by: viewModel.disposeBag)
     }
 
+
     //MARK - SEARCHBAR Delegate
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchBar.text
         searchBar.resignFirstResponder()
         searchController.isActive = false
-        viewModel.page.accept(viewModel.page.value + 1)
+//        viewModel.page.accept(viewModel.page.value + 1)
         searchController.searchBar.text = text
     }
     
     
-    //MARK - TABLEVIEW SCROLLVIEW Delegate
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
+    //MARK - TABLEVIEW Delegate
+
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
 //
-//        if offsetY > contentHeight - scrollView.frame.size.height {
-//            viewModel.page.accept(viewModel.page.value + 1)
-//        }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return viewModel.flickerObjectList.value.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+//        let item = viewModel.flickerObjectList.va[indexPath.row]
+//        cell.textLabel?.text = item.title
+//        cell.imageView?.sd_setImage(with: viewModel.getImageURL(item), placeholderImage: UIImage(named: "Placeholder.png"))
+//
+//        return cell
 //    }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -120,7 +126,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let contentHeight = scrollView.contentSize.height - (self.tableView.frame.size.height);
         if actualPosition >= contentHeight {
             // fetch resources
-            viewModel.page.accept(viewModel.page.value + 1)
 
         }
     }

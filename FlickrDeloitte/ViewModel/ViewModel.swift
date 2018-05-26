@@ -13,60 +13,51 @@ import RxCocoa
 class ViewModel {
     
     private let apiManager: APIManager?
-    let page = BehaviorRelay<Int>.init(value: 0)
-    var flickerObjectList: Driver<[FlickrObject]>!
-    let query: Observable<String>
+    var flickerObjectList = Variable<[FlickrObject]>.init([])
+    var page = Variable<Int>.init(0)
     let disposeBag = DisposeBag()
+    let query = Variable<String>.init("test")
 
-    init(APIManager: APIManager = APIManager(), query: Observable<String> ) {
+    init(APIManager: APIManager = APIManager()) {
         self.apiManager = APIManager
-        self.query = query
         
-        let relaxedQuery = query
-        .filter{ $0 != "" }
-        .debug()
-        .throttle(0.5, scheduler: MainScheduler.instance)
-        .distinctUntilChanged()
-
-        let relaxedPage = page.asObservable()
-            .distinctUntilChanged()
-        //        .flatMap({ (query) in
-//            APIManager.getFlickrPhotosContainer(query: query, page: 1)
-//        }).map({ (apiResult) -> [FlickrObject] in
-//            switch apiResult {
-//            case .Success(let container):
-//                return (container.photos?.photo!)!
-//            case .Error:
-//                return []
-//            }
-//        }).subscribe(onNext: { photo in
-//            print(photo[1])
-////            self.flickerObjectList.onNext(photo)
-//        })
-////
-        
-        
- 
-        self.flickerObjectList = Observable.combineLatest(relaxedQuery, relaxedPage) { ($0, $1) }
+        query.asObservable().filter{ $0 != "" }
             .debug()
-            .flatMap({ (values) in
-                APIManager.getFlickrPhotosContainer(query: values.0, page: values.1)
-            }).map({ (apiResult) -> [FlickrObject] in
-                switch apiResult {
-                    case .Success(let container):
-                        return (container.photos?.photo!)!
-                    case .Error:
-                        return []
-                }
-            })
-            .asDriver(onErrorJustReturn: [])
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe({(query) in
+                self.refreshResults(query: query.element!)
+        }).disposed(by: disposeBag)
         
+        page.asObservable().subscribe({(page) in
+            self.refreshResults(query: self.query.value, page: page.element!)
+            }
+        ).disposed(by: disposeBag)
 
     }
-
-
+    
+    func refreshResults(query: String, page: Int = 1) {
+        self.apiManager?.getFlickrPhotosContainer(query: query, page: page).subscribe(onNext: { (apiResult) in
+                switch apiResult {
+                case .Success(let container):
+                    if let photos = container.photos?.photo {
+                        if page != 1 {
+                            for single in photos {
+                                self.flickerObjectList.value.append(single)
+                            }
+                        } else {
+                            self.flickerObjectList.value = photos
+                        }
+                    } else {
+                        self.flickerObjectList.value = []
+                    }
+                case .Error:
+                    self.flickerObjectList.value = []
+                }
+            }).disposed(by: disposeBag)
+    }
+    
     func getImageURL(_ model: FlickrObject) -> URL {
-//        http://farm{farm}.static.flickr.com/{server}/{id}_{secret}.jpg
         let urlString = "http://farm\(model.farm).static.flickr.com/\(model.server)/\(model.id)_\(model.secret).jpg"
         
         if let url = URL(string: urlString) {

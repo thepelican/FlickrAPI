@@ -47,7 +47,6 @@ class ViewModel {
                             for single in photos {
                                 self.flickerObjectList.value.append(single)
                             }
-                            print(self.flickerObjectList.value.count)
                         } else {
                             self.flickerObjectList.value = photos
                         }

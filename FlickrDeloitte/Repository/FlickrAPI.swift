@@ -90,7 +90,12 @@ class APIManager {
 
 class MockURLSession: FlickrAPI {
     func GET(apiCall: APICall) -> Observable<Data> {
-        return Observable.just(Data())
+        let bundle = Bundle.main
+        let path = bundle.path(forResource: "jsonData", ofType: "json")
+        
+        let data: NSData? = NSData(contentsOfFile: path!)
+
+        return Observable.just(data! as Data)
     }
     
 }

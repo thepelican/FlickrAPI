@@ -9,13 +9,13 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import SDWebImage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate {
 
     private let tableView = UITableView()
     private let cellIdentifier = "cellIdentifier"
-    private let disposeBag = DisposeBag()
-    private let viewModel = ViewModel()
+    private var viewModel: ViewModel!
     
     private let searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.viewModel = ViewModel(query: searchController.searchBar.rx.text.orEmpty.asObservable())
+        
         configureProperties()
         configureLayout()
         configureReactiveBinding()
@@ -33,9 +36,14 @@ class ViewController: UIViewController {
     private func configureProperties() {
         tableView.register(FlickrTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         navigationItem.searchController = searchController
+        searchController.searchBar.text = "test"
+        searchController.searchBar.enablesReturnKeyAutomatically = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
         navigationItem.title = "University finder"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.prefersLargeTitles = true
+        tableView.delegate = self
     }
     
     private func configureLayout() {
@@ -51,19 +59,19 @@ class ViewController: UIViewController {
     }
     
     private func configureReactiveBinding() {
-        searchController.searchBar.rx.text.asObservable()
-            .map { ($0 ?? "").lowercased() }
-            .flatMap { request -> Observable<[FlickrObject]> in
-                return viewModel.getFlickrPhotosContainer(text: request)
-            }
+        
+//            .map { ($0 ?? "").lowercased() }
+//            .flatMap { request -> Observable<[FlickrObject]> in
+//                return viewModel.getFlickrPhotosContainer(text: request)
+//            }
         
             viewModel.flickerObjectList.drive(tableView.rx.items(cellIdentifier: cellIdentifier))
-{ index, model, cell in
-                cell.textLabel?.text = "suka"
-                cell.detailTextLabel?.text = "suak"
+            { index, model, cell in
+                cell.textLabel?.text = model.title
+                cell.imageView?.sd_setImage(with: self.viewModel.getImageURL(model), placeholderImage: UIImage(named: "Placeholder.jpg"))
                 cell.textLabel?.adjustsFontSizeToFitWidth = true
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
 //        tableView.rx.modelSelected(UniversityModel.self)
 //            .map { URL(string: $0.webPages?.first ?? "")! }
@@ -72,7 +80,34 @@ class ViewController: UIViewController {
 //                self?.present(safariViewController, animated: true)
 //            })
 //            .disposed(by: disposeBag)
+        
+        tableView.rx.contentOffset
+            .subscribe { [weak self] _ in
+                if (self?.searchController.searchBar.isFirstResponder)! {
+                    _ = self?.searchController.searchBar.resignFirstResponder()
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
     }
 
+    //MARK - SEARCHBAR Delegate
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let text = searchBar.text
+        searchBar.resignFirstResponder()
+        searchController.isActive = false
+        searchController.searchBar.text = text
+    }
+    
+    
+    //MARK - TABLEVIEW SCROLLVIEW Delegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.size.height {
+            viewModel.page.accept(viewModel.page.value + 1)
+        }
+    }
 }
 

@@ -16,7 +16,7 @@ class FlickrTableViewCell: UITableViewCell {
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder aDecoder: NSCoder) {

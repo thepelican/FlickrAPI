@@ -74,8 +74,9 @@ class APIManager {
             let jsonDecoder = JSONDecoder()
             
             do {
-                let flickrArray:FlickrContainer = try jsonDecoder.decode(FlickrContainer.self, from: json)
-                return .Success(flickrArray)
+                let flickr:FlickrContainer = try jsonDecoder.decode(FlickrContainer.self, from: json)
+                if flickr.stat != nil && flickr.stat == "fail" { return .Error(.genericError) }
+                return .Success(flickr)
             } catch {
                 return .Error(.genericError)
             }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F9E935520B91C950054611B /* FlickrTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E935420B91C950054611B /* FlickrTableViewCell.swift */; };
 		2F9E935620B91C950054611B /* FlickrTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E935420B91C950054611B /* FlickrTableViewCell.swift */; };
+		2F9F408520B9C6BB008832E9 /* jsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F408420B9C6BA008832E9 /* jsonData.json */; };
 		733AA98420B7CFE400A878E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733AA98320B7CFE400A878E2 /* AppDelegate.swift */; };
 		733AA98620B7CFE400A878E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733AA98520B7CFE400A878E2 /* ViewController.swift */; };
 		733AA98920B7CFE400A878E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 733AA98720B7CFE400A878E2 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 		733AA9B520B7D08400A878E2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733AA9B420B7D08400A878E2 /* ViewModel.swift */; };
 		733AA9B720B7D0AD00A878E2 /* FlickrObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733AA9B620B7D0AD00A878E2 /* FlickrObject.swift */; };
 		733AA9BA20B7D43600A878E2 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733AA9B920B7D43600A878E2 /* FlickrAPI.swift */; };
+		9C0B8020B5080B0141641AE7 /* Pods_FlickrDeloitteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35883FBBAB2437071479FCDC /* Pods_FlickrDeloitteTests.framework */; };
 		B7DFFE63B397EAA102857F70 /* Pods_FlickrDeloitte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46945E77889315DBD7ED1F74 /* Pods_FlickrDeloitte.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,9 @@
 
 /* Begin PBXFileReference section */
 		2F9E935420B91C950054611B /* FlickrTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrTableViewCell.swift; sourceTree = "<group>"; };
+		2F9F408420B9C6BA008832E9 /* jsonData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsonData.json; sourceTree = "<group>"; };
+		35883FBBAB2437071479FCDC /* Pods_FlickrDeloitteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrDeloitteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F7A295325E0E31CA3455139 /* Pods-FlickrDeloitteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrDeloitteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrDeloitteTests/Pods-FlickrDeloitteTests.release.xcconfig"; sourceTree = "<group>"; };
 		44C50130F33C9A9503224EDB /* Pods-FlickrDeloitte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrDeloitte.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrDeloitte/Pods-FlickrDeloitte.debug.xcconfig"; sourceTree = "<group>"; };
 		46945E77889315DBD7ED1F74 /* Pods_FlickrDeloitte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrDeloitte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		733AA98020B7CFE400A878E2 /* FlickrDeloitte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrDeloitte.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +65,7 @@
 		733AA9B620B7D0AD00A878E2 /* FlickrObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrObject.swift; sourceTree = "<group>"; };
 		733AA9B920B7D43600A878E2 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		8A71E20F09E4EA7A74C4A50C /* Pods-FlickrDeloitte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrDeloitte.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrDeloitte/Pods-FlickrDeloitte.release.xcconfig"; sourceTree = "<group>"; };
+		A70583D406C4809BFF6187DB /* Pods-FlickrDeloitteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrDeloitteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrDeloitteTests/Pods-FlickrDeloitteTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C0B8020B5080B0141641AE7 /* Pods_FlickrDeloitteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +145,7 @@
 		733AA99720B7CFE400A878E2 /* FlickrDeloitteTests */ = {
 			isa = PBXGroup;
 			children = (
+				2F9F408420B9C6BA008832E9 /* jsonData.json */,
 				733AA99820B7CFE400A878E2 /* FlickrDeloitteTests.swift */,
 				733AA99A20B7CFE400A878E2 /* Info.plist */,
 			);
@@ -189,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				46945E77889315DBD7ED1F74 /* Pods_FlickrDeloitte.framework */,
+				35883FBBAB2437071479FCDC /* Pods_FlickrDeloitteTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -198,6 +207,8 @@
 			children = (
 				44C50130F33C9A9503224EDB /* Pods-FlickrDeloitte.debug.xcconfig */,
 				8A71E20F09E4EA7A74C4A50C /* Pods-FlickrDeloitte.release.xcconfig */,
+				A70583D406C4809BFF6187DB /* Pods-FlickrDeloitteTests.debug.xcconfig */,
+				3F7A295325E0E31CA3455139 /* Pods-FlickrDeloitteTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -228,9 +239,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 733AA9AB20B7CFE400A878E2 /* Build configuration list for PBXNativeTarget "FlickrDeloitteTests" */;
 			buildPhases = (
+				7DB41179F7A583E43DC794B0 /* [CP] Check Pods Manifest.lock */,
 				733AA99020B7CFE400A878E2 /* Sources */,
 				733AA99120B7CFE400A878E2 /* Frameworks */,
 				733AA99220B7CFE400A878E2 /* Resources */,
+				F532B7924D21BA43993A70BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -309,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				733AA98E20B7CFE400A878E2 /* LaunchScreen.storyboard in Resources */,
+				2F9F408520B9C6BB008832E9 /* jsonData.json in Resources */,
 				733AA98B20B7CFE400A878E2 /* Assets.xcassets in Resources */,
 				733AA98920B7CFE400A878E2 /* Main.storyboard in Resources */,
 			);
@@ -340,6 +354,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-FlickrDeloitte/Pods-FlickrDeloitte-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
@@ -347,12 +362,31 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlickrDeloitte/Pods-FlickrDeloitte-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DB41179F7A583E43DC794B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlickrDeloitteTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		856E2F78D7E290691690C6F6 /* [CP] Check Pods Manifest.lock */ = {
@@ -371,6 +405,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F532B7924D21BA43993A70BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FlickrDeloitteTests/Pods-FlickrDeloitteTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlickrDeloitteTests/Pods-FlickrDeloitteTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -595,6 +647,7 @@
 		};
 		733AA9AC20B7CFE400A878E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A70583D406C4809BFF6187DB /* Pods-FlickrDeloitteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -616,6 +669,7 @@
 		};
 		733AA9AD20B7CFE400A878E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F7A295325E0E31CA3455139 /* Pods-FlickrDeloitteTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

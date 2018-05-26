@@ -11,7 +11,12 @@ target 'FlickrDeloitte' do
     pod 'SDWebImage'
     pod 'RxSwift'
     pod 'RxCocoa'
+    pod 'RxTest'
     pod 'SnapKit'
+end
+
+target 'FlickrDeloitteTests' do
+    pod 'RxSwift'
 end
 
 

@@ -31,12 +31,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         configureProperties()
         configureLayout()
         configureReactiveBinding()
+        
+        //ask for page 1
+        self.viewModel.page.accept(1)
+
     }
     
     private func configureProperties() {
         tableView.register(FlickrTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         navigationItem.searchController = searchController
-        searchController.searchBar.text = "test"
+        searchController.searchBar.text = "kitten"
         searchController.searchBar.enablesReturnKeyAutomatically = true
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
@@ -96,17 +100,28 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let text = searchBar.text
         searchBar.resignFirstResponder()
         searchController.isActive = false
+        viewModel.page.accept(viewModel.page.value + 1)
         searchController.searchBar.text = text
     }
     
     
     //MARK - TABLEVIEW SCROLLVIEW Delegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if offsetY > contentHeight - scrollView.frame.size.height {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//
+//        if offsetY > contentHeight - scrollView.frame.size.height {
+//            viewModel.page.accept(viewModel.page.value + 1)
+//        }
+//    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let actualPosition = scrollView.contentOffset.y;
+        let contentHeight = scrollView.contentSize.height - (self.tableView.frame.size.height);
+        if actualPosition >= contentHeight {
+            // fetch resources
             viewModel.page.accept(viewModel.page.value + 1)
+
         }
     }
 }

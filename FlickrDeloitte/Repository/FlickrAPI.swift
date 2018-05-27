@@ -28,9 +28,7 @@ protocol FlickrAPI {
     func GET(apiCall: APICall) -> Observable<Data>
 }
 
-extension URLSession: FlickrAPI {
-    static let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=96358825614a5d3b1a1c3fd87fca2b47&text=kittens&format=json&nojsoncallback=1"
-    
+extension URLSession: FlickrAPI {    
     func GET(apiCall: APICall) -> Observable<Data> {
         
         switch apiCall {

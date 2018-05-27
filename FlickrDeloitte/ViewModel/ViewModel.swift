@@ -13,17 +13,17 @@ import RxCocoa
 class ViewModel {
     
     private let apiManager: APIManager?
-    var flickerObjectList = Variable<[FlickrObject]>.init([])
+    var flickerObjectList = Variable<[FlickrCellRow]>.init([])
     var page = Variable<Int>.init(0)
     let disposeBag = DisposeBag()
-    let query = Variable<String>.init("test")
+    let query = Variable<String>.init("kitten")
 
     init(APIManager: APIManager = APIManager()) {
         self.apiManager = APIManager
         
         query.asObservable().filter{ $0 != "" }
             .debug()
-            .throttle(0.5, scheduler: MainScheduler.instance)
+            .throttle(0.3, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe({(query) in
                 self.refreshResults(query: query.element!)
@@ -43,13 +43,20 @@ class ViewModel {
                 switch apiResult {
                 case .Success(let container):
                     if let photos = container.photos?.photo {
-                        if page != 1 {
-                            for single in photos {
-                                self.flickerObjectList.value.append(single)
-                            }
-                        } else {
-                            self.flickerObjectList.value = photos
+                        if page == 1 {
+                            self.flickerObjectList.value.removeAll()
                         }
+                        photos.forEach({ (item) in
+                            if let lastItem = self.flickerObjectList.value.last {
+                                if lastItem.add(obj: item) == false {
+                                    self.flickerObjectList.value.append(FlickrCellRow(first: item))
+                                }
+                            } else {
+                                self.flickerObjectList.value.append(FlickrCellRow(first: item))
+                            }
+
+                        })
+                    
                     } else {
                         self.flickerObjectList.value = []
                     }
@@ -58,7 +65,6 @@ class ViewModel {
                 }
             }).disposed(by: disposeBag)
     }
-    
 
     func getImageURL(_ model: FlickrObject) -> URL {
         let urlString = "http://farm\(model.farm).static.flickr.com/\(model.server)/\(model.id)_\(model.secret).jpg"

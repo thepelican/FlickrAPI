@@ -23,6 +23,32 @@ struct FlickrObject: Decodable {
     
 }
 
+class FlickrCellRow {
+    var itemOne: FlickrObject?
+    var itemTwo: FlickrObject?
+    var itemThree: FlickrObject?
+    
+    init(first: FlickrObject) {
+        self.itemOne = first
+    }
+    
+    func add(obj: FlickrObject) -> Bool {
+        if itemOne == nil {
+            itemOne = obj
+            return true
+        }
+        if itemTwo == nil {
+            itemTwo = obj
+            return true
+        }
+        if itemThree == nil {
+            itemThree = obj
+            return true
+        }
+        return false
+    }
+}
+
 struct FlickrPhotos: Decodable {
     var page: Int?
     var pages: Int?

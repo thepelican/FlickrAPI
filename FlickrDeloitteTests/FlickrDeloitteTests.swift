@@ -39,11 +39,17 @@ class FlickrDeloitteTests: XCTestCase {
     
     func testSimpleApi() {
         self.viewModel?.refreshResults(query: "kitten", page: 1)
-        XCTAssert(self.viewModel?.flickerObjectList.value.count == 2)
-        XCTAssert(self.viewModel?.flickerObjectList.value.first!.farm == 2)
-        XCTAssert(self.viewModel?.flickerObjectList.value.first!.id == "41463558795")
-        XCTAssert(self.viewModel?.flickerObjectList.value.first!.owner == "12208635@N07")
-        XCTAssert(self.viewModel?.flickerObjectList.value.first!.title == "Every Kitten Wants to Rule the World :-)")
+        XCTAssert(self.viewModel?.flickerObjectList.value.count == 1)
+        XCTAssert(self.viewModel?.flickerObjectList.value.first != nil)
+        XCTAssert(self.viewModel?.flickerObjectList.value.first!.itemOne != nil)
+        XCTAssert(self.viewModel?.flickerObjectList.value.first!.itemTwo != nil)
+        XCTAssert(self.viewModel?.flickerObjectList.value.first!.itemThree == nil)
+        
+        XCTAssert(self.viewModel?.flickerObjectList.value.first!.itemOne?.farm == 2)
+        XCTAssert(self.viewModel?.flickerObjectList.value.first!.itemOne?.id == "41463558795")
+        XCTAssert(self.viewModel?.flickerObjectList.value.first!.itemOne?.owner == "12208635@N07")
+        XCTAssert(self.viewModel?.flickerObjectList.value.first!.itemOne?.title == "Every Kitten Wants to Rule the World :-)")
+        //etc etc
         
     }
     

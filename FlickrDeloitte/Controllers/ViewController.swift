@@ -14,18 +14,16 @@ import SDWebImage
 class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate {
 
     private let tableView = UITableView()
-    private let cellIdentifier = "cellIdentifier"
     private var viewModel: ViewModel!
     
     private let searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "Search for university"
+        searchController.searchBar.placeholder = "FLICKR SEARCH"
         return searchController
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         configureProperties()
         configureLayout()
@@ -37,13 +35,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     }
     
     private func configureProperties() {
-        tableView.register(FlickrTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         navigationItem.searchController = searchController
         searchController.searchBar.text = "kitten"
         searchController.searchBar.enablesReturnKeyAutomatically = true
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
-        navigationItem.title = "University finder"
+        navigationItem.title = "Flikr"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.delegate = self
@@ -59,7 +56,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         tableView.contentInset.bottom = view.safeAreaInsets.bottom
-        
+        tableView.register(UINib(nibName:"FlickrTableViewCell", bundle: nil) , forCellReuseIdentifier: "FlickrTableViewCell")
+
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         spinner.startAnimating()
         spinner.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 44)
@@ -68,23 +66,36 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     private func configureReactiveBinding() {
         
-        searchController.searchBar.rx.text.orEmpty.asObservable().bind(to: viewModel.query)
+        searchController.searchBar.rx.text.orEmpty.asObservable().bind(to: viewModel.query).disposed(by: viewModel.disposeBag)
         
-        viewModel.flickerObjectList.asDriver().drive(tableView.rx.items(cellIdentifier: cellIdentifier))
+        viewModel.flickerObjectList.asDriver().drive(tableView.rx.items(cellIdentifier: "FlickrTableViewCell"))
         { index, model, cell in
-            cell.textLabel?.text = model.title
-            cell.imageView?.sd_setImage(with: self.viewModel.getImageURL(model), placeholderImage: UIImage(named: "Placeholder.jpg"))
-            cell.textLabel?.adjustsFontSizeToFitWidth = true
+            let cellRow = cell as! FlickrTableViewCell
+            if let first = model.itemOne {
+                cellRow.imgOne.sd_setImage(with: self.viewModel.getImageURL(first), placeholderImage: UIImage(named: "Placeholder.jpg"))
+                cellRow.titleOne.text = first.title
+            } else {
+                cellRow.imgOne.image = UIImage(named: "Placeholder.jpg")
+                cellRow.titleOne.text = ""
+            }
+            
+            if let second = model.itemTwo {
+                cellRow.imgTwo.sd_setImage(with: self.viewModel.getImageURL(second), placeholderImage: UIImage(named: "Placeholder.jpg"))
+                cellRow.titleTwo.text = second.title
+            } else {
+                cellRow.imgTwo.image = UIImage(named: "Placeholder.jpg")
+                cellRow.titleTwo.text = ""
+            }
+            
+            if let third = model.itemThree {
+                cellRow.imgThree.sd_setImage(with: self.viewModel.getImageURL(third), placeholderImage: UIImage(named: "Placeholder.jpg"))
+                cellRow.titleThree.text = third.title
+            } else {
+                cellRow.imgThree.image = UIImage(named: "Placeholder.jpg")
+                cellRow.titleThree.text = ""
+            }
             }
             .disposed(by: viewModel.disposeBag)
-        
-        //        tableView.rx.modelSelected(UniversityModel.self)
-        //            .map { URL(string: $0.webPages?.first ?? "")! }
-        //            .map { SFSafariViewController(url: $0) }
-        //            .subscribe(onNext: { [weak self] safariViewController in
-        //                self?.present(safariViewController, animated: true)
-        //            })
-        //            .disposed(by: disposeBag)
         
         tableView.rx.contentOffset
             .subscribe { [weak self] _ in
@@ -93,65 +104,28 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 }
             }
             .disposed(by: viewModel.disposeBag)
+        
+        tableView.rx.willDisplayCell.subscribe{ [weak self] (willDisplayEvent) in
+            if let vm = self?.viewModel {
+                if (willDisplayEvent.element?.indexPath.row == vm.flickerObjectList.value.count - 1) {
+                    self?.viewModel.page.value = vm.page.value + 1
+                }
+            }
+
+        }.disposed(by: viewModel.disposeBag)
+        
+        
+        searchController.searchBar.rx.searchButtonClicked.subscribe { [weak self] (clicked) in
+            if let svc = self?.searchController,  let sb = self?.searchController.searchBar, let vm = self?.viewModel {
+                let text = sb.text
+                sb.resignFirstResponder()
+                svc.isActive = false
+                vm.page.value = 1
+                svc.searchBar.text = text
+            }
+        }.disposed(by: viewModel.disposeBag)
     }
 
 
-    //MARK - SEARCHBAR Delegate
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let text = searchBar.text
-        searchBar.resignFirstResponder()
-        searchController.isActive = false
-        viewModel.page.value = 1
-        searchController.searchBar.text = text
-    }
-    
-    
-    //MARK - TABLEVIEW Delegate
-
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.flickerObjectList.value.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-//        let item = viewModel.flickerObjectList.va[indexPath.row]
-//        cell.textLabel?.text = item.title
-//        cell.imageView?.sd_setImage(with: viewModel.getImageURL(item), placeholderImage: UIImage(named: "Placeholder.png"))
-//
-//        return cell
-//    }
-    
-    func tableView(_ tableView: UITableView,
-                   willDisplay cell: UITableViewCell,
-                   forRowAt indexPath: IndexPath)
-    {
-        // At the bottom...
-        if (indexPath.row == self.viewModel.flickerObjectList.value.count - 1) {
-            viewModel.page.value = viewModel.page.value + 1
-        }
-    }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        
-//        if offsetY > contentHeight - scrollView.frame.size.height && contentHeight != 0  {
-//        }
-//    }
-    
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        let actualPosition = scrollView.contentOffset.y;
-//        let contentHeight = scrollView.contentSize.height - (self.tableView.frame.size.height);
-//        if actualPosition >= contentHeight {
-//            // fetch resources
-//            viewModel.page.value = viewModel.page.value + 1
-//
-//        }
-//    }
 }
 

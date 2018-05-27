@@ -2,7 +2,7 @@
 //  ViewModel.swift
 //  FlickrDeloitte
 //
-//  Created by Leonard Wu on 25/5/18.
+//  Created by Marco Prayer on 25/5/18.
 //  Copyright © 2018 Marco Prayer. All rights reserved.
 //
 
@@ -14,14 +14,16 @@ class ViewModel {
     
     private let apiManager: APIManager?
     var flickerObjectList = Variable<[FlickrCellRow]>.init([])
-    var page = Variable<Int>.init(0)
+    var page = Variable<Int>.init(1)
     let disposeBag = DisposeBag()
     let query = Variable<String>.init("kitten")
 
     init(APIManager: APIManager = APIManager()) {
         self.apiManager = APIManager
         
-        query.asObservable().filter{ $0 != "" }
+        query.asObservable()
+            .filter{ $0 != "" }
+            .map{ $0.replacingOccurrences(of: " ", with: "") }
             .debug()
             .throttle(0.3, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
@@ -30,16 +32,18 @@ class ViewModel {
         }).disposed(by: disposeBag)
         
         page.asObservable()
-            .filter{ $0 != 1 || $0 != 0 }
+            .filter{ $0 != 1 }
             .subscribe({(page) in
-            self.refreshResults(query: self.query.value, page: page.element!)
+                self.refreshResults(query: self.query.value, page: page.element!)
             }
         ).disposed(by: disposeBag)
 
     }
     
     func refreshResults(query: String, page: Int = 1) {
-        self.apiManager?.getFlickrPhotosContainer(query: query, page: page).subscribe(onNext: { (apiResult) in
+        let sanitazedQuery = query.replacingOccurrences(of: " ", with: "")
+        
+        self.apiManager?.getFlickrPhotosContainer(query: sanitazedQuery, page: page).subscribe(onNext: { (apiResult) in
                 switch apiResult {
                 case .Success(let container):
                     if let photos = container.photos?.photo {

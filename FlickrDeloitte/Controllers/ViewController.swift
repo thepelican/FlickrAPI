@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  FlickrDeloitte
 //
-//  Created by Leonard Wu on 25/5/18.
+//  Created by Marco Prayer on 25/5/18.
 //  Copyright © 2018 Marco Prayer. All rights reserved.
 //
 
@@ -13,15 +13,12 @@ import SDWebImage
 
 class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate {
 
-    private let tableView = UITableView()
+    @IBOutlet weak var tableView: UITableView!
+//    private let tableView = UITableView()
     private var viewModel: ViewModel!
-    
-    private let searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "FLICKR SEARCH"
-        return searchController
-    }()
-    
+    @IBOutlet weak var searchBar: UISearchBar!
+    let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,38 +32,25 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     }
     
     private func configureProperties() {
-        navigationItem.searchController = searchController
-        searchController.searchBar.text = "kitten"
-        searchController.searchBar.enablesReturnKeyAutomatically = true
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self
-        navigationItem.title = "Flikr"
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Flickr"
         tableView.delegate = self
     }
     
     private func configureLayout() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
-        tableView.contentInset.bottom = view.safeAreaInsets.bottom
-        tableView.register(UINib(nibName:"FlickrTableViewCell", bundle: nil) , forCellReuseIdentifier: "FlickrTableViewCell")
 
+        self.tableView.register(UINib(nibName:"FlickrTableViewCell", bundle: nil) , forCellReuseIdentifier: "FlickrTableViewCell")
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         spinner.startAnimating()
         spinner.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 44)
         self.tableView.tableFooterView = spinner;
+        
+        tableView.refreshControl = refreshControl
+        
     }
     
     private func configureReactiveBinding() {
         
-        searchController.searchBar.rx.text.orEmpty.asObservable().bind(to: viewModel.query).disposed(by: viewModel.disposeBag)
+        searchBar.rx.text.orEmpty.asObservable().bind(to: viewModel.query).disposed(by: viewModel.disposeBag)
         
         viewModel.flickerObjectList.asDriver().drive(tableView.rx.items(cellIdentifier: "FlickrTableViewCell"))
         { index, model, cell in
@@ -99,15 +83,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         tableView.rx.contentOffset
             .subscribe { [weak self] _ in
-                if (self?.searchController.searchBar.isFirstResponder)! {
-                    _ = self?.searchController.searchBar.resignFirstResponder()
+                if (self?.searchBar.isFirstResponder)! {
+                    _ = self?.searchBar.resignFirstResponder()
                 }
             }
             .disposed(by: viewModel.disposeBag)
         
         tableView.rx.willDisplayCell.subscribe{ [weak self] (willDisplayEvent) in
             if let vm = self?.viewModel {
-                if (willDisplayEvent.element?.indexPath.row == vm.flickerObjectList.value.count - 1) {
+                if (willDisplayEvent.element?.indexPath.row == vm.flickerObjectList.value.count - 1)
+                    && vm.flickerObjectList.value.count != 0 {
                     self?.viewModel.page.value = vm.page.value + 1
                 }
             }
@@ -115,17 +100,33 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         }.disposed(by: viewModel.disposeBag)
         
         
-        searchController.searchBar.rx.searchButtonClicked.subscribe { [weak self] (clicked) in
-            if let svc = self?.searchController,  let sb = self?.searchController.searchBar, let vm = self?.viewModel {
+        searchBar.rx.searchButtonClicked.subscribe { [weak self] (clicked) in
+            if  let sb = self?.searchBar, let vm = self?.viewModel {
                 let text = sb.text
                 sb.resignFirstResponder()
-                svc.isActive = false
                 vm.page.value = 1
-                svc.searchBar.text = text
+                sb.text = text
             }
         }.disposed(by: viewModel.disposeBag)
+        
+        
+        self.refreshControl.rx.controlEvent(.valueChanged)
+            .map { _ in !self.refreshControl.isRefreshing }
+            .filter { $0 == false }
+            .map {_ in self.viewModel.refreshResults(query: self.viewModel.query.value) }
+        
+        self.refreshControl.rx.controlEvent(.valueChanged)
+            .map { _ in self.refreshControl.isRefreshing }
+            .filter { $0 == true }
+            .subscribe({ [unowned self] _ in
+                self.refreshControl.endRefreshing()
+            })
+            .disposed(by: self.viewModel.disposeBag)
     }
 
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }
 
